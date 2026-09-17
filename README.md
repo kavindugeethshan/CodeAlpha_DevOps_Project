@@ -43,9 +43,11 @@ The existing G-Lab full-stack application was used as the application workload a
 ```
 
 ---
-**The frontend is built as a production application and served through Nginx.
-**The backend runs as a separate Node.js container.
-**Docker Compose is used to run and manage both services together.
+* The frontend is built as a production application and served through Nginx.
+* The backend runs as a separate Node.js container.
+* Docker Compose is used to run and manage both services together.
+
+---
 
 # Docker Implementation
 
@@ -56,6 +58,7 @@ Nginx was configured and verified as a local web server for serving the applicat
 ![Nginx Running on localhost](docs/screenshots/01-nginx-localhost.png)
 
 ---
+
 ## 2. Nginx Running Inside Docker
 
 Nginx was configured to serve the production frontend inside a Docker container.
@@ -100,7 +103,7 @@ The frontend and backend containers were started independently and verified thro
 
 The containerized web application was successfully accessed through localhost.
 
-![Dockerized Application](docs/screenshots/14-final-application.png)
+![Dockerized Application](docs/screenshots/07-dockerized-app-localhost.png)
 
 ---
 
@@ -110,7 +113,7 @@ The containerized web application was successfully accessed through localhost.
 
 Docker container lifecycle operations were tested by stopping and restarting application containers.
 
-![Container Lifecycle](docs/screenshots/07-container-lifecycle.png)
+![Container Lifecycle](docs/screenshots/08-container-lifecycle.png)
 
 ---
 
@@ -118,7 +121,7 @@ Docker container lifecycle operations were tested by stopping and restarting app
 
 The application containers were recreated from the defined Docker configuration, demonstrating reproducibility.
 
-![Container Recreation](docs/screenshots/08-container-recreation.png)
+![Container Recreation](docs/screenshots/09-container-recreation.png)
 
 ---
 
@@ -128,7 +131,7 @@ The application containers were recreated from the defined Docker configuration,
 
 Docker Compose was used to define and start the frontend and backend services together.
 
-![Docker Compose](docs/screenshots/09-docker-compose.png)
+![Docker Compose](docs/screenshots/10-docker-compose.png)
 
 ---
 
@@ -136,83 +139,111 @@ Docker Compose was used to define and start the frontend and backend services to
 
 After starting the services using Docker Compose, the complete application was verified through the browser.
 
-![Compose Application](docs/screenshots/14-final-application.png)
+![Compose Application](docs/screenshots/11-docker-compose-full-application.png)
+
+---
+
+## 12. Docker Compose Lifecycle Management
+
+The operational lifecycle of the multi-container stack was tested using compose commands (stop, start, restart).
+
+![Compose Lifecycle](docs/screenshots/12-compose-lifecycle.png)
 
 ---
 
 # Monitoring and Troubleshooting
 
-## 12. Container State
+## 13. Container State
 
-Docker container states were inspected to understand the lifecycle and operational status of the services.
+Docker container states and resource metrics were inspected using docker stats.
 
-![Container State](docs/screenshots/10-container-state.png)
+![Container State](docs/screenshots/13-container-state.png)
 
 ---
 
-## 13. Backend Logs
+## 14. Backend Logs
 
 Backend container logs were inspected to monitor server activity and identify runtime issues.
 
-![Backend Logs](docs/screenshots/11-backend-logs.png)
+![Backend Logs](docs/screenshots/14-backend-logs.png)
 
 ---
 
-## 14. Frontend Nginx Logs
+## 15. Frontend Nginx Logs
 
 Nginx logs were reviewed to monitor frontend requests and investigate web-server issues.
 
-![Frontend Nginx Logs](docs/screenshots/12-frontend-nginx-logs.png)
+![Frontend Nginx Logs](docs/screenshots/15-frontend-nginx-logs.png)
 
 ---
 
-## 15. Docker Inspect
+## 16. Docker Inspect
 
 Docker Inspect was used to examine container configuration, networking, runtime settings, and metadata.
 
-![Docker Inspect](docs/screenshots/13-docker-inspect.png)
+![Docker Inspect](docs/screenshots/16-docker-inspect.png)
 
 ---
 
-## 16. Container Health
+## 17. Container Health
 
 Docker health checks were used to verify the operational status of the application services.
 
-![Container Health](docs/screenshots/14-container-health.png)
+![Container Health](docs/screenshots/17-container-health.png)
 
 ---
 
-## 17. Nginx Proxy Pass Troubleshooting
+## 18. Container Health Details
+
+Detailed container health checks and telemetry were inspected using Docker inspect.
+
+![Container Health Details](docs/screenshots/18-container-health-details.png)
+
+---
+
+## 19. Nginx Reverse Proxy Configuration
+
+Nginx was configured as a reverse proxy for the frontend, backend API, and WebSockets.
+
+![Nginx Configuration](docs/screenshots/19-nginx-configuration.png)
+
+---
+
+## 20. Nginx Proxy Pass Troubleshooting
 
 The Nginx proxy configuration was modified during troubleshooting to investigate communication between the frontend and backend services.
 
-![Proxy Pass Troubleshooting](docs/screenshots/15-proxy-pass-troubleshooting.png)
+![Proxy Pass Troubleshooting](docs/screenshots/20-proxy-pass-troubleshooting.png)
 
 ---
 
-## 18. Failure Simulation
+## 21. Failure Simulation
 
 A configuration change was intentionally introduced to simulate a frontend failure and observe the resulting behavior.
 
-![Failure Simulation](docs/screenshots/16-frontend-failure.png)
+![Failure Simulation](docs/screenshots/21-frontend-failure.png)
 
 ---
 
-## 19. Error Log Analysis
+## 22. Error Log Analysis
 
 Nginx error logs were analyzed to identify the cause of the frontend failure.
 
-![Error Log](docs/screenshots/17-error-log.png)
+![Error Log](docs/screenshots/22-error-log.png)
 
 ---
 
 # Docker Best Practices
 
-## Backend Dockerfile
+## 23. Backend Dockerfile Best Practices
 
-The backend Dockerfile was structured to provide a consistent and reproducible container environment.
+The backend Dockerfile was structured using best practices including non-root user execution, dependency caching, and health checks.
 
-## Frontend Multi-Stage Dockerfile
+![Backend Dockerfile Best Practices](docs/screenshots/23-backend-dockerfile-best-practices.png)
+
+---
+
+## 24. Frontend Multi-Stage Dockerfile
 
 The frontend uses a multi-stage Docker build.
 
@@ -223,7 +254,7 @@ The build process separates:
 
 This helps keep the final production image smaller and focused on serving the built application.
 
-![Frontend Multi Stage Dockerfile](docs/screenshots/18-frontend-multistage.png)
+![Frontend Multi Stage Dockerfile](docs/screenshots/24-frontend-multistage.png)
 
 ---
 
@@ -233,11 +264,11 @@ This helps keep the final production image smaller and focused on serving the bu
 
 ### Backend
 
-![Backend Dockerignore](docs/screenshots/19-backend-dockerignore.png)
+![Backend Dockerignore](docs/screenshots/25-backend-dockerignore.png)
 
 ### Frontend
 
-![Frontend Dockerignore](docs/screenshots/20-frontend-dockerignore.png)
+![Frontend Dockerignore](docs/screenshots/26-frontend-dockerignore.png)
 
 ---
 
@@ -245,7 +276,7 @@ This helps keep the final production image smaller and focused on serving the bu
 
 A restart policy was configured in Docker Compose to control service behavior when containers stop or encounter failures.
 
-![Restart Policy](docs/screenshots/21-restart-policy.png)
+![Restart Policy](docs/screenshots/27-restart-policy.png)
 
 ---
 
@@ -257,7 +288,7 @@ The frontend and backend services communicate through a Docker network.
 
 This allows containers to communicate using Docker's internal networking instead of relying on external host networking.
 
-![Docker Network](docs/screenshots/22-docker-network.png)
+![Docker Network](docs/screenshots/28-docker-network.png)
 
 ---
 
@@ -265,7 +296,7 @@ This allows containers to communicate using Docker's internal networking instead
 
 Docker network inspection was used to verify connected containers and examine the network configuration.
 
-![Network Inspect](docs/screenshots/23-network-inspect.png)
+![Network Inspect](docs/screenshots/29-network-inspect.png)
 
 ---
 
@@ -297,7 +328,15 @@ The application consists of:
 * Health checks
 * Restart policies
 
-![Final Dockerized Application](docs/screenshots/14-final-application.png)
+![Final Dockerized Application](docs/screenshots/30-final-application-storefront.png)
+
+---
+
+## Container Resource Stats
+
+Continuous monitoring verifies that all running containers maintain a lean memory footprint and minimal CPU usage.
+
+![Container Resource Stats](docs/screenshots/31-container-resource-stats.png)
 
 ---
 
@@ -377,7 +416,34 @@ CodeAlpha_DevOps_Project/
 │       ├── 01-nginx-localhost.png
 │       ├── 02-nginx-docker.png
 │       ├── 03-backend-docker-build.png
-│       ├── ...
+│       ├── 04-frontend-docker-build.png
+│       ├── 05-docker-images.png
+│       ├── 06-containers-running.png
+│       ├── 07-dockerized-app-localhost.png
+│       ├── 08-container-lifecycle.png
+│       ├── 09-container-recreation.png
+│       ├── 10-docker-compose.png
+│       ├── 11-docker-compose-full-application.png
+│       ├── 12-compose-lifecycle.png
+│       ├── 13-container-state.png
+│       ├── 14-backend-logs.png
+│       ├── 15-frontend-nginx-logs.png
+│       ├── 16-docker-inspect.png
+│       ├── 17-container-health.png
+│       ├── 18-container-health-details.png
+│       ├── 19-nginx-configuration.png
+│       ├── 20-proxy-pass-troubleshooting.png
+│       ├── 21-frontend-failure.png
+│       ├── 22-error-log.png
+│       ├── 23-backend-dockerfile-best-practices.png
+│       ├── 24-frontend-multistage.png
+│       ├── 25-backend-dockerignore.png
+│       ├── 26-frontend-dockerignore.png
+│       ├── 27-restart-policy.png
+│       ├── 28-docker-network.png
+│       ├── 29-network-inspect.png
+│       ├── 30-final-application-storefront.png
+│       └── 31-container-resource-stats.png
 │
 ├── compose.yaml
 ├── .gitignore
@@ -428,7 +494,7 @@ docker compose down
 
 ---
 
-#  Final Verification
+# Final Verification
 
 The final Docker Compose deployment was verified with both application services running successfully.
 
@@ -476,7 +542,8 @@ Final Dockerized Application
 ```
 
 ---
-#Author
+
+# Author
 
 **Kavindu Geethshan Subasingha**
 
