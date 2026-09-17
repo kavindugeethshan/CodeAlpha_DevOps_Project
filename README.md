@@ -311,6 +311,9 @@ codealpha-backend    Up    (healthy)
 codealpha-frontend   Up    (healthy)
 ```
 
+![Container Health](docs/screenshots/17-container-health.png)
+
+
 ---
 
 # Final Dockerized Application
