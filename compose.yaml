@@ -1,0 +1,16 @@
+services:
+
+  backend:
+    build: ./G-Lab-backend
+    container_name: codealpha-backend
+    env_file: ./G-Lab-backend/.env
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+
+  frontend:
+    build: ./G-Lab-frontend
+    container_name: codealpha-frontend
+    restart: unless-stopped
+    ports:
+      - "8081:80"
